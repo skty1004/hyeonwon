@@ -25,24 +25,14 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* 구글 사이트 삽입(iframe) 최적화 */
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box;
-        }
-
-        * { box-sizing: inherit; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Pretendard', sans-serif;
             color: var(--text-primary);
             line-height: 1.6;
             background-color: #ffffff;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; /* 가로 스크롤바 방지 */
             top: 0px !important; /* 구글 번역기 상단 여백 방지 */
             position: static !important;
         }
@@ -54,7 +44,7 @@
         
         /* 페이지 오버 (SPA) 핵심 CSS */
         .page-section { 
-            display: none; /* JS에서 강제로 제어합니다 */
+            display: none; 
             min-height: calc(100vh - 100px); 
             animation: fadeInPage 0.5s ease-out forwards;
         }
@@ -85,7 +75,7 @@
         .navbar-top .container { display: flex; justify-content: flex-end; gap: 15px; }
         .navbar-top a { transition: color 0.2s; }
         .navbar-top a:hover, .navbar-top a.active { color: white; font-weight: 600; }
-        .navbar-main { padding: 20px 0; }
+        .navbar-main { padding: 20px 0; position: relative; }
         .navbar-main .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.5px; }
         .logo span { color: var(--gold-600); }
@@ -97,6 +87,9 @@
         }
         .nav-links a:hover { color: var(--gold-600); }
         .nav-links a.active { color: var(--gold-600); border-bottom-color: var(--gold-600); }
+
+        /* 모바일 햄버거 메뉴 버튼 (기본 숨김) */
+        .mobile-menu-btn { display: none; font-size: 1.5rem; color: var(--slate-900); cursor: pointer; }
 
         /* 히어로 섹션 (Home 화면 - 오직 첫 화면에만 표출됨) */
         .hero {
@@ -180,7 +173,7 @@
         .footer-list li i { margin-top: 5px; color: var(--gold-500); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
 
-        /* 모바일 대응 */
+        /* 태블릿/모바일 반응형 최적화 (GitHub Pages 스탠다드 적용) */
         @media (max-width: 992px) {
             .profile-grid, .features-grid, .footer-grid { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -188,7 +181,22 @@
             .hero h1 { font-size: 3rem; }
         }
         @media (max-width: 768px) {
-            .navbar-main .nav-links { display: none; } /* 구글 사이트에서는 모바일 시 이 부분을 숨기고 따로 버튼을 만드는 것이 좋습니다 */
+            .mobile-menu-btn { display: block; }
+            .navbar-main .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 100%; left: 0; width: 100%; 
+                background: rgba(255, 255, 255, 0.98); 
+                backdrop-filter: blur(10px);
+                flex-direction: column; 
+                padding: 20px 5%; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+                gap: 15px; 
+            }
+            .navbar-main .nav-links.show { display: flex; }
+            .nav-links a { border-bottom: none; border-left: 3px solid transparent; padding-left: 10px; }
+            .nav-links a.active { border-left-color: var(--gold-600); }
+
             .services-grid { grid-template-columns: 1fr; }
             .resume-list { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.4rem; }
@@ -231,6 +239,8 @@
         <div class="navbar-main">
             <div class="container">
                 <a onclick="showPage('home')" class="logo">현원 <span>행정사 사무소</span></a>
+                <!-- 모바일용 햄버거 메뉴 버튼 -->
+                <i class="fas fa-bars mobile-menu-btn" onclick="toggleMenu()"></i>
                 <div class="nav-links">
                     <a onclick="showPage('home')" class="active" id="nav-home">홈페이지</a>
                     <a onclick="showPage('profile')" id="nav-profile">대표 컨설턴트</a>
@@ -636,9 +646,15 @@
             showPage('home');
         };
 
+        // 모바일 햄버거 메뉴 토글 기능
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
         // 페이지 전환 (SPA 구조)
         function showPage(pageId) {
-            // JS를 이용해 물리적으로 화면 노출을 완전히 차단합니다.
+            // 모든 페이지 숨김 처리
             document.querySelectorAll('.page-section').forEach(function(page) {
                 page.style.display = 'none';
                 page.classList.remove('active');
@@ -647,6 +663,12 @@
             document.querySelectorAll('.nav-links a').forEach(function(link) {
                 link.classList.remove('active');
             });
+
+            // 모바일 메뉴가 열려있을 경우 닫기
+            const navLinks = document.querySelector('.nav-links');
+            if(navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+            }
 
             // 선택된 페이지만 보이기
             const activePage = document.getElementById(pageId);
@@ -679,7 +701,6 @@
             var selectField = document.querySelector('select.goog-te-combo');
             if (selectField) {
                 selectField.value = langCode;
-                // 확실한 이벤트 트리거 (구글 사이트 도구 iframe 호환)
                 if (typeof Event === 'function') {
                     selectField.dispatchEvent(new Event('change', { bubbles: true }));
                 } else {
