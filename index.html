@@ -103,7 +103,9 @@
             align-items: center; display: flex;
             background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop') center/cover;
-            color: white; padding-top: 120px; padding-bottom: 60px;
+            color: white; 
+            /* PC 상단 여백 확보 */
+            padding-top: 140px; padding-bottom: 60px;
         }
         .hero-content { max-width: 900px; width: 100%; }
         .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; }
@@ -243,8 +245,10 @@
 
         /* 3차 브레이크포인트: 좁은 스마트폰 화면 최적화 */
         @media (max-width: 768px) {
-            /* 히어로 섹션 글자 크기 및 줄바꿈 최적화 */
-            .hero { padding-top: 100px; padding-bottom: 60px; }
+            /* 히어로 섹션 상단 잘림 해결을 위해 여백 대폭 추가 및 시작 위치 위로 고정 */
+            .hero { padding-top: 150px; padding-bottom: 80px; align-items: flex-start; }
+            .hero-content { margin-top: 20px; } /* 헤더 아래로 여유 공간 보장 */
+            
             .hero h1 { font-size: 2.1rem; margin-bottom: 15px; line-height: 1.35; }
             .hero p { font-size: 1.05rem; margin-bottom: 8px; line-height: 1.5; }
             .hero p.last-desc { margin-bottom: 30px; }
