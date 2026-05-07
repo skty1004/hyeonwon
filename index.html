@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>현원 행정사 사무소 | 출입국 및 창업기업 인허가 프리미엄 컨설팅</title>
     
-    <!-- 프리미엄 웹 폰트 (Pretendard) 및 FontAwesome -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -33,8 +32,10 @@
             line-height: 1.6;
             background-color: #ffffff;
             -webkit-font-smoothing: antialiased;
-            top: 0px !important; /* 구글 번역기 상단 여백 방지 */
+            top: 0px !important; 
             position: static !important;
+            word-break: keep-all; /* 모바일 가독성 최적화: 단어 단위로만 줄바꿈 허용 */
+            overflow-wrap: break-word;
         }
         
         a { text-decoration: none; color: inherit; cursor: pointer; }
@@ -93,16 +94,19 @@
 
         /* 히어로 섹션 (Home 화면) */
         .hero {
-            height: 100vh; min-height: 750px; align-items: center;
+            min-height: 100vh; height: auto; /* 고정 높이 제거, 유연한 높이 적용 */
+            align-items: center;
             background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop') center/cover;
-            color: white; padding-top: 80px;
+            color: white; padding-top: 120px; padding-bottom: 60px;
         }
-        .hero-content { max-width: 900px; }
+        .hero-content { max-width: 900px; width: 100%; }
         .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; }
         .hero h1 { font-size: 3.6rem; font-weight: 800; line-height: 1.25; margin-bottom: 25px; letter-spacing: -1px; }
         .hero p { font-size: 1.25rem; color: var(--slate-100); font-weight: 300; margin-bottom: 12px; max-width: 800px; word-break: keep-all; line-height: 1.4; }
         .hero p.last-desc { margin-bottom: 40px; }
+        
+        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
         
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; border-radius: 4px; font-weight: 600; transition: var(--transition); border: 1px solid transparent; }
         .btn-gold { background-color: var(--gold-600); color: white; }
@@ -121,11 +125,18 @@
         .profile-name h3 { font-size: 2.2rem; font-weight: 800; color: var(--slate-900); }
         .profile-name p { color: var(--text-secondary); font-weight: 600; font-size: 1.1rem; margin-top: 5px; }
         
-        .cert-badges { display: flex; flex-direction: column; gap: 10px; margin-top: 25px; }
-        .cert-badge { background: var(--slate-900); color: white; padding: 10px 15px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; text-align: left; display: flex; align-items: center; gap: 10px; line-height: 1.4; }
+        .cert-badges { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
+        
+        /* 모바일 대응 뱃지 CSS 보강 (아이콘 위쪽 정렬, 단어 끊김 방지) */
+        .cert-badge { 
+            background: var(--slate-900); color: white; padding: 14px 16px; border-radius: 8px; 
+            font-size: 0.95rem; font-weight: 600; text-align: left; 
+            display: flex; align-items: flex-start; gap: 12px; line-height: 1.4; 
+        }
         .cert-badge.highlight { background: var(--gold-600); }
-        .cert-badge i { color: var(--gold-500); flex-shrink: 0; }
+        .cert-badge i { color: var(--gold-500); flex-shrink: 0; margin-top: 3px; font-size: 1.1rem; }
         .cert-badge.highlight i { color: white; }
+        .cert-badge span { display: block; width: 100%; }
         
         .profile-right h4 { font-size: 1.4rem; color: var(--slate-900); border-bottom: 2px solid var(--slate-900); padding-bottom: 12px; margin-bottom: 20px; font-weight: 800; margin-top: 40px; }
         .profile-right h4:first-child { margin-top: 0; }
@@ -137,7 +148,7 @@
         
         /* 굵은 글씨와 작은 글씨 간격 제어 */
         .resume-list li strong { color: var(--slate-900); display: block; margin-bottom: 0; line-height: 1.3; }
-        .resume-list li .desc { display: block; margin-top: 0; font-size: 0.95em; color: var(--text-secondary); line-height: 1.4; }
+        .resume-list li .desc { display: block; margin-top: 3px; font-size: 0.95em; color: var(--text-secondary); line-height: 1.4; }
 
         /* 경쟁력 섹션 */
         .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
@@ -156,7 +167,7 @@
         
         .service-points { border-top: 1px dashed var(--slate-100); padding-top: 20px; margin-bottom: 20px; }
         .service-points li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: var(--slate-800); font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
-        .service-points li i { color: var(--gold-600); margin-top: 3px; }
+        .service-points li i { color: var(--gold-600); margin-top: 3px; flex-shrink: 0; }
         .service-points li span { font-weight: 400; color: var(--text-secondary); font-size: 0.85rem; display: block; margin-top: 2px; }
 
         .service-proof { background: var(--slate-50); padding: 15px; border-left: 3px solid var(--gold-500); font-size: 0.85rem; color: var(--slate-800); border-radius: 4px; }
@@ -179,12 +190,17 @@
         .footer-right-group { display: flex; flex-direction: column; gap: 15px; }
         .footer-cols-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
         .footer-info-full { display: flex; align-items: flex-start; gap: 10px; color: #94a3b8; font-size: 0.9rem; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-info-full i { color: var(--gold-500); margin-top: 4px; }
+        .footer-info-full i { color: var(--gold-500); margin-top: 4px; flex-shrink: 0; }
         .footer-brand h2 { color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; }
         .footer-brand p { max-width: 400px; font-size: 0.95rem; line-height: 1.7; }
         .footer-col h5 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
         .footer-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; }
-        .footer-list li i { margin-top: 5px; color: var(--gold-500); }
+        .footer-list li i { margin-top: 5px; color: var(--gold-500); flex-shrink: 0; }
+        
+        /* 링크에 마우스를 올렸을 때 효과 추가 */
+        .footer-list li a { transition: color 0.2s; color: inherit; }
+        .footer-list li a:hover { color: var(--gold-500); }
+        
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
 
         /* 태블릿/모바일 반응형 최적화 */
@@ -211,9 +227,17 @@
             .nav-links a { border-bottom: none; border-left: 3px solid transparent; padding-left: 10px; }
             .nav-links a.active { border-left-color: var(--gold-600); }
 
+            /* 히어로 섹션 모바일 최적화 (버튼 및 간격) */
+            .hero { padding-top: 120px; padding-bottom: 80px; }
+            .hero h1 { font-size: 2.2rem; margin-bottom: 20px; }
+            .hero p { font-size: 1.05rem; margin-bottom: 10px; }
+            .hero p.last-desc { margin-bottom: 30px; }
+            
+            .hero-buttons { flex-direction: column; gap: 12px; }
+            .hero-buttons .btn { width: 100%; padding: 14px 20px; }
+
             .services-grid { grid-template-columns: 1fr; }
             .resume-list { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.4rem; }
             .pub-card { flex-direction: column; gap: 15px; }
             .pub-card:hover { padding-left: 35px; border-left: none; }
         }
@@ -256,10 +280,8 @@
 </head>
 <body>
 
-    <!-- 커스텀 토스트 알림 영역 -->
     <div id="toast" class="custom-toast"></div>
 
-    <!-- 구글 번역 API 세팅 영역 -->
     <div id="google_translate_element"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -272,7 +294,6 @@
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <!-- 글로벌 네비게이션 -->
     <nav class="navbar">
         <div class="navbar-top">
             <div class="container" id="lang-menu">
@@ -287,7 +308,6 @@
         <div class="navbar-main">
             <div class="container">
                 <a onclick="showPage('home')" class="logo">현원 <span>행정사 사무소</span></a>
-                <!-- 모바일용 햄버거 메뉴 버튼 -->
                 <i class="fas fa-bars mobile-menu-btn" onclick="toggleMenu()"></i>
                 <div class="nav-links">
                     <a onclick="showPage('home')" class="active" id="nav-home">홈페이지</a>
@@ -302,8 +322,6 @@
         </div>
     </nav>
 
-    <!-- [PAGE 1] 히어로 섹션 (Home) -->
-    <!-- 참고: 이 부분은 오직 홈 화면에서만 노출되며 서브 메뉴를 클릭하면 사라집니다. -->
     <header class="hero page-section active" id="home">
         <div class="container">
             <div class="hero-content">
@@ -312,7 +330,7 @@
                 <p>단순 서류 작성을 넘어 기업의 실질적 가치를 높입니다.</p> 
                 <p><b>학술적 인사이트, 법무부 출입국 대행 역량, 공공부문 재정 실무 경험을 결합하여</b></p>
                 <p class="last-desc">외국인 비자 발급과 기업 인허가에 가장 완벽한 솔루션을 제공합니다.</p>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div class="hero-buttons">
                     <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="btn btn-gold">프리미엄 컨설팅 의뢰 <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
                     <a onclick="showPage('services')" class="btn btn-outline-white">전문 서비스 확인</a>
                     <a href="tel:010-4965-3280" class="btn btn-outline-white"><i class="fas fa-phone-alt"></i> 010-4965-3280</a>
@@ -321,7 +339,6 @@
         </div>
     </header>
 
-    <!-- [PAGE 2] 프로필 섹션 (대표 행정사) -->
     <section class="sub-page page-section" id="profile">
         <div class="container">
             <div class="section-header">
@@ -332,7 +349,6 @@
             <div class="profile-grid">
                 <div class="profile-left">
                     <div class="profile-img">
-                        <!-- pic.jpg가 없을 경우를 대비한 onError 플레이스홀더 추가 -->
                         <img src="pic.jpg" alt="김태용 행정사 프로필 사진" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=256&q=80'">
                     </div>
                     <div class="profile-name">
@@ -340,17 +356,29 @@
                         <p>대표 행정사</p>
                     </div>
                     <div class="cert-badges">
-                        <div class="cert-badge highlight"><i class="fas fa-chalkboard-teacher"></i> 서경대학교 인텔리전트 경영학과<br>겸임교수</div>
-                        <div class="cert-badge highlight"><i class="fas fa-passport"></i> 법무부 출입국민원 대행기관</div>
-                        <div class="cert-badge"><i class="fas fa-stamp"></i> 일반행정사</div>
-                        <div class="cert-badge"><i class="fas fa-database"></i> 국가공인 데이터 분석 자격</div>
+                        <div class="cert-badge highlight">
+                            <i class="fas fa-chalkboard-teacher"></i> 
+                            <span>서경대학교 인텔리전트 경영학과 겸임교수</span>
+                        </div>
+                        <div class="cert-badge highlight">
+                            <i class="fas fa-passport"></i> 
+                            <span>법무부 출입국민원 대행기관</span>
+                        </div>
+                        <div class="cert-badge">
+                            <i class="fas fa-stamp"></i> 
+                            <span>일반행정사</span>
+                        </div>
+                        <div class="cert-badge">
+                            <i class="fas fa-database"></i> 
+                            <span>국가공인 데이터 분석 자격</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="profile-right">
                     <h4><i class="fas fa-briefcase"></i> 직무 경력</h4>
                     <ul class="resume-list">
-                        <li><i class="fas fa-check"></i> <div><strong>서경대학교 인텔리전트 경영학과<br>겸임교수</strong><span class="desc">현업과 이론을 접목한 경영 실무 교육</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>서경대학교 인텔리전트 경영학과 겸임교수</strong><span class="desc">현업과 이론을 접목한 경영 실무 교육</span></div></li>
                         <li><i class="fas fa-check"></i> <div><strong>공공부문 재정업무</strong><span class="desc">국가 재무, 예산 편성, 회계, 국가계약 실무</span></div></li>
                     </ul>
 
@@ -392,22 +420,21 @@
 
                     <h4><i class="fas fa-cogs"></i> 실무 역량</h4>
                     <ul class="resume-list">
-                        <li><i class="fas fa-check"></i> <div><strong>출입국 민원 및 기업 인허가 대행</strong><span class="desc">기업/투자, 유학, 혼인/가족 비자 등<br>출입국 민원 및 기업 인허가</span></div></li>
-                        <li><i class="fas fa-check"></i> <div><strong>데이터 활용 타당성 분석 및 IT 기획</strong><span class="desc">데이터 분석 기반 사업기획, 행정 컨성팅 및<br>IT 시스템 기획</span></div></li>
-                        <li><i class="fas fa-check"></i> <div><strong>기업 운영 시 발생하는 행정 리스크 관리</strong><span class="desc">기업 운영 시 발생하는 각종 이슈 및<br>행정 리스크 예방</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>출입국 민원 및 기업 인허가 대행</strong><span class="desc">기업/투자, 유학, 혼인/가족 비자 등 출입국 민원 및 기업 인허가</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>데이터 활용 타당성 분석 및 IT 기획</strong><span class="desc">데이터 분석 기반 사업기획, 행정 컨설팅 및 IT 시스템 기획</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>기업 운영 시 발생하는 행정 리스크 관리</strong><span class="desc">기업 운영 시 발생하는 각종 이슈 및 행정 리스크 예방</span></div></li>
                     </ul>
 
                     <h4><i class="fas fa-book-reader"></i> 학술 및 연구 역량</h4>
                     <ul class="resume-list">
-                        <li><i class="fas fa-check"></i> <div><strong>창업 및 글로벌 비즈니스<br>생태계 연구</strong><span class="desc">창업 실패 요인 및<br>글로벌 창업이주(Inbound) 논문 저술</span></div></li>
-                        <li><i class="fas fa-check"></i> <div><strong>디지털 전환 및 정보시스템 분석</strong><span class="desc">디지털 정보 격차 실증 연구,<br>국방통합재정정보시스템 분석</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>창업 및 글로벌 비즈니스 생태계 연구</strong><span class="desc">창업 실패 요인 및 글로벌 창업이주(Inbound) 논문 저술</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>디지털 전환 및 정보시스템 분석</strong><span class="desc">디지털 정보 격차 실증 연구, 국방통합재정정보시스템 분석</span></div></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- [PAGE 3] 핵심 경쟁력 섹션 -->
     <section class="sub-page page-section" id="competence">
         <div class="container">
             <div class="section-header">
@@ -448,7 +475,6 @@
         </div>
     </section>
 
-    <!-- [PAGE 4] 실무 전문 서비스 (출입국 및 인허가) -->
     <section class="sub-page page-section" id="services">
         <div class="container">
             <div class="section-header">
@@ -457,7 +483,6 @@
                 <p>심층적인 비즈니스 분석과 공공 실무 경험을 바탕으로 기업과 개인의 가장 중요한 행정 절차를 완벽하게 대행합니다.</p>
             </div>
             <div class="services-grid">
-                <!-- 서비스 1: 출입국 -->
                 <div class="service-card" style="grid-column: span 1;">
                     <div class="service-icon"><i class="fas fa-passport"></i></div>
                     <h3>출입국 및 맞춤형 비자 대행<br>(Immigration & Visa)</h3>
@@ -486,7 +511,6 @@
                     </div>
                 </div>
                 
-                <!-- 서비스 2: 창업기업 인허가 -->
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-industry"></i></div>
                     <h3>창업기업 인허가 및 설립<br>(Startup Licensing)</h3>
@@ -503,7 +527,6 @@
                     </div>
                 </div>
                 
-                <!-- 서비스 3: 정부지원사업 -->
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>정부지원 및 공공조달<br>(Gov Support & Procurement)</h3>
@@ -523,7 +546,6 @@
         </div>
     </section>
 
-    <!-- [PAGE 5] 공공조달 및 B2B 전략 컨설팅 -->
     <section class="sub-page page-section" id="procurement">
         <div class="container">
             <div class="section-header">
@@ -563,7 +585,6 @@
         </div>
     </section>
 
-    <!-- [PAGE 6] 데이터·IT 기반 행정 -->
     <section class="sub-page page-section" id="data-it">
         <div class="container">
             <div class="section-header">
@@ -603,7 +624,6 @@
         </div>
     </section>
 
-    <!-- [PAGE 7] 학술 연구 및 논문 -->
     <section class="sub-page page-section" id="research">
         <div class="container">
             <div class="section-header">
@@ -673,7 +693,6 @@
         </div>
     </section>
 
-    <!-- 푸터 (Contact - 항상 하단에 노출되거나 스크롤 다운 시 보임) -->
     <footer id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -696,8 +715,8 @@
                         <div class="footer-col">
                             <h5>컨설팅 의뢰 및 문의</h5>
                             <ul class="footer-list">
-                                <li><i class="fas fa-phone-alt"></i> <div>010-4965-3280</div></li>
-                                <li><i class="fas fa-envelope"></i> <div>hyeonwon1004@gmail.com</div></li>
+                                <li><i class="fas fa-phone-alt"></i> <div><a href="tel:010-4965-3280">010-4965-3280</a></div></li>
+                                <li><i class="fas fa-envelope"></i> <div><a href="mailto:hyeonwon1004@gmail.com">hyeonwon1004@gmail.com</a></div></li>
                                 <li><i class="fas fa-clipboard-list"></i> <div><a href="https://forms.gle/6Mum5QWxVWDuxSFJA" target="_blank" rel="noopener noreferrer" style="color: var(--gold-500); font-weight: 600;">온라인 폼으로 컨설팅 의뢰하기</a></div></li>
                             </ul>
                         </div>
@@ -715,7 +734,6 @@
         </div>
     </footer>
 
-    <!-- 페이지 전환 및 언어 변경을 위한 JavaScript -->
     <script>
         // 처음 로딩될 때 기본으로 홈 화면만 보여지도록 설정
         window.onload = function() {
