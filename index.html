@@ -30,6 +30,7 @@
         html, body { 
             overflow-x: hidden; 
             width: 100%;
+            max-width: 100vw; /* 화면 크기 초과 팽창 물리적 차단 */
         }
         
         body {
@@ -38,9 +39,17 @@
             line-height: 1.6;
             background-color: #ffffff;
             -webkit-font-smoothing: antialiased;
-            word-break: keep-all; 
-            /* 어떤 텍스트든 컨테이너 영역을 벗어나면 무조건 줄바꿈 수행 */
+            /* 기존 keep-all(단어유지) 제거. 번역 시 가장 큰 레이아웃 파괴 주범임 */
+            word-break: break-word; 
             overflow-wrap: anywhere !important; 
+        }
+
+        /* 구글 번역 시 생성되는 태그 및 번역 상태 전용 강제 줄바꿈 
+           (특히 띄어쓰기 없는 일본어/중국어 문장 박스 탈출 완벽 방지) */
+        font, .translated-ltr *, .translated-rtl * {
+            word-break: break-all !important; /* 공간이 부족하면 무조건 글자 단위로 끊음 */
+            overflow-wrap: anywhere !important;
+            white-space: normal !important;
         }
         
         /* 글씨가 밑으로 흘러내려 다른 화면을 가리는 현상 방지: 
@@ -98,7 +107,7 @@
         .navbar-top a:hover, .navbar-top a.active { color: white; font-weight: 600; }
         .navbar-main { padding: 20px 0; position: relative; }
         .navbar-main .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.5px; flex-shrink: 0; max-width: 100%; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.5px; flex-shrink: 1; max-width: 100%; word-break: break-all; } /* 로고 축소 허용 */
         .logo span { color: var(--gold-600); }
         
         .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
@@ -131,7 +140,7 @@
         
         .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; width: 100%; }
         
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; border-radius: 4px; font-weight: 600; transition: var(--transition); border: 1px solid transparent; text-align: center; white-space: normal; line-height: 1.4; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; border-radius: 4px; font-weight: 600; transition: var(--transition); border: 1px solid transparent; text-align: center; white-space: normal; line-height: 1.4; word-break: break-word; }
         .btn-gold { background-color: var(--gold-600); color: white; }
         .btn-gold:hover { background-color: #996b00; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(184, 134, 11, 0.2); }
         .btn-outline-white { background: transparent; color: white; border-color: rgba(255,255,255,0.5); }
