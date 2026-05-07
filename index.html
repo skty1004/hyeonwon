@@ -101,7 +101,8 @@
         .hero-content { max-width: 900px; }
         .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; }
         .hero h1 { font-size: 3.6rem; font-weight: 800; line-height: 1.25; margin-bottom: 25px; letter-spacing: -1px; }
-        .hero p { font-size: 1.25rem; color: var(--slate-100); font-weight: 300; margin-bottom: 45px; max-width: 800px; word-break: keep-all; line-height: 1.7; }
+        .hero p { font-size: 1.25rem; color: var(--slate-100); font-weight: 300; margin-bottom: 12px; max-width: 800px; word-break: keep-all; line-height: 1.4; }
+        .hero p.last-desc { margin-bottom: 40px; }
         
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; border-radius: 4px; font-weight: 600; transition: var(--transition); border: 1px solid transparent; }
         .btn-gold { background-color: var(--gold-600); color: white; }
@@ -174,7 +175,11 @@
 
         /* 푸터 */
         footer { background: var(--slate-900); color: var(--text-muted); padding: 80px 0 30px; border-top: 5px solid var(--gold-600); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-right-group { display: flex; flex-direction: column; gap: 15px; }
+        .footer-cols-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .footer-info-full { display: flex; align-items: flex-start; gap: 10px; color: #94a3b8; font-size: 0.9rem; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-info-full i { color: var(--gold-500); margin-top: 4px; }
         .footer-brand h2 { color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; }
         .footer-brand p { max-width: 400px; font-size: 0.95rem; line-height: 1.7; }
         .footer-col h5 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
@@ -184,7 +189,7 @@
 
         /* 태블릿/모바일 반응형 최적화 */
         @media (max-width: 992px) {
-            .profile-grid, .features-grid, .footer-grid { grid-template-columns: 1fr; }
+            .profile-grid, .features-grid, .footer-grid, .footer-cols-wrapper { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .profile-left { border-right: none; border-bottom: 1px solid var(--slate-100); padding-right: 0; padding-bottom: 40px; }
             .hero h1 { font-size: 3rem; }
@@ -213,12 +218,46 @@
             .pub-card:hover { padding-left: 35px; border-left: none; }
         }
 
-        /* 구글 번역기 상단 바 숨김 처리 */
-        .goog-te-banner-frame.skiptranslate { display: none !important; } 
+        /* 구글 번역기 UI 완벽 숨김 처리 (상단 배너 및 팝업 제거) */
+        .skiptranslate { display: none !important; }
+        body.skiptranslate { display: block !important; top: 0px !important; position: static !important; }
+        html { top: 0px !important; }
+        iframe.goog-te-banner-frame { display: none !important; }
+        iframe[name="goog_te_banner_frame"] { display: none !important; }
+        #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+        .goog-text-highlight { background: none !important; box-shadow: none !important; }
         #google_translate_element { display: none !important; }
+
+        /* 커스텀 토스트 알림 CSS */
+        .custom-toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 10000;
+            left: 50%;
+            bottom: 30px;
+            font-size: 0.9rem;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
+        }
+        .custom-toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- 커스텀 토스트 알림 영역 -->
+    <div id="toast" class="custom-toast"></div>
 
     <!-- 구글 번역 API 세팅 영역 -->
     <div id="google_translate_element"></div>
@@ -272,7 +311,7 @@
                 <h1>행정의 한계를 넘는<br>압도적 실무와 데이터의 힘.</h1>
                 <p>단순 서류 작성을 넘어 기업의 실질적 가치를 높입니다.</p> 
                 <p><b>학술적 인사이트, 법무부 출입국 대행 역량, 공공부문 재정 실무 경험을 결합하여</b></p>
-                <p>외국인 비자 발급과 기업 인허가에 가장 완벽한 솔루션을 제공합니다.</p>
+                <p class="last-desc">외국인 비자 발급과 기업 인허가에 가장 완벽한 솔루션을 제공합니다.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                     <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="btn btn-gold">프리미엄 컨설팅 의뢰 <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
                     <a onclick="showPage('services')" class="btn btn-outline-white">전문 서비스 확인</a>
@@ -286,14 +325,15 @@
     <section class="sub-page page-section" id="profile">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Administrator</span>
+                <span class="badge">Licensed Administrative Attorney</span>
                 <h2>대표 행정사 프로필</h2>
                 <p>학문적 통찰력과 공공 실무를 겸비한 비즈니스 파트너</p>
             </div>
             <div class="profile-grid">
                 <div class="profile-left">
                     <div class="profile-img">
-                        <img src="pic.jpg" alt="김태용 행정사 프로필 사진">
+                        <!-- pic.jpg가 없을 경우를 대비한 onError 플레이스홀더 추가 -->
+                        <img src="pic.jpg" alt="김태용 행정사 프로필 사진" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=256&q=80'">
                     </div>
                     <div class="profile-name">
                         <h3>김태용</h3>
@@ -301,7 +341,7 @@
                     </div>
                     <div class="cert-badges">
                         <div class="cert-badge highlight"><i class="fas fa-chalkboard-teacher"></i> 서경대학교 인텔리전트 경영학과<br>겸임교수</div>
-                        <div class="cert-badge highlight"><i class="fas fa-passport"></i> 법무부 출입국 대행기관</div>
+                        <div class="cert-badge highlight"><i class="fas fa-passport"></i> 법무부 출입국민원 대행기관</div>
                         <div class="cert-badge"><i class="fas fa-stamp"></i> 일반행정사</div>
                         <div class="cert-badge"><i class="fas fa-database"></i> 국가공인 데이터 분석 자격</div>
                     </div>
@@ -310,8 +350,8 @@
                 <div class="profile-right">
                     <h4><i class="fas fa-briefcase"></i> 직무 경력</h4>
                     <ul class="resume-list">
-                        <li><i class="fas fa-check"></i> <div><strong>공공부문 재정업무</strong><span class="desc">국가 재무, 예산 편성, 회계, 국가계약 실무</span></div></li>
                         <li><i class="fas fa-check"></i> <div><strong>서경대학교 인텔리전트 경영학과<br>겸임교수</strong><span class="desc">현업과 이론을 접목한 경영 실무 교육</span></div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>공공부문 재정업무</strong><span class="desc">국가 재무, 예산 편성, 회계, 국가계약 실무</span></div></li>
                     </ul>
 
                     <h4><i class="fas fa-graduation-cap"></i> 학력</h4>
@@ -371,7 +411,7 @@
     <section class="sub-page page-section" id="competence">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Why Hyunwon?</span>
+                <span class="badge">Why Hyeonwon?</span>
                 <h2>결과가 다른 압도적 이유</h2>
                 <p>서류만 제출하는 행정사를 넘어, 의뢰인의 비즈니스와 삶을 학술적·실무적으로 분석합니다.</p>
             </div>
@@ -642,29 +682,35 @@
                     <p style="margin-top:15px; color:#cbd5e1;">단순 서류 대행을 넘어 기업의 비전과 가치를 입증합니다. 법무부 출입국 등록 역량, 깊이 있는 학술적 통찰력, 그리고 데이터 분석의 정교함으로 의뢰인의 성공을 책임지겠습니다.</p>
                 </div>
                 
-                <div class="footer-col">
-                    <h5>오피스 정보</h5>
-                    <ul class="footer-list">
-                        <li><i class="fas fa-user-tie"></i> <div>대표 행정사: 김 태 용</div></li>
-                        <li><i class="fas fa-id-card"></i> <div>사업자등록번호:<br>272-63-00916</div></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <div>서울특별시 성북구 정릉동</div></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h5>컨설팅 의뢰 및 문의</h5>
-                    <ul class="footer-list">
-                        <li><i class="fas fa-phone-alt"></i> <div>010-4965-3280</div></li>
-                        <li><i class="fas fa-envelope"></i> <div>hyeonwon1004@gmail.com</div></li>
-                        <li style="margin-top: 10px; color:#94a3b8; font-size:0.9rem;">
-                            <i class="fas fa-info-circle"></i> <div>신속하고 정확한 업무 처리를 위해 <b>전화, 이메일 및 온라인 폼</b>을 통한 상담을 진행하고 있습니다. 편하신 방법으로 문의해 주십시오.</div>
-                        </li>
-                    </ul>
+                <div class="footer-right-group">
+                    <div class="footer-cols-wrapper">
+                        <div class="footer-col">
+                            <h5>오피스 정보</h5>
+                            <ul class="footer-list">
+                                <li><i class="fas fa-user-tie"></i> <div>대표 행정사: 김 태 용</div></li>
+                                <li><i class="fas fa-id-card"></i> <div>사업자등록번호:<br>272-63-00916</div></li>
+                                <li><i class="fas fa-map-marker-alt"></i> <div>서울특별시 성북구 정릉동</div></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h5>컨설팅 의뢰 및 문의</h5>
+                            <ul class="footer-list">
+                                <li><i class="fas fa-phone-alt"></i> <div>010-4965-3280</div></li>
+                                <li><i class="fas fa-envelope"></i> <div>hyeonwon1004@gmail.com</div></li>
+                                <li><i class="fas fa-clipboard-list"></i> <div><a href="https://forms.gle/6Mum5QWxVWDuxSFJA" target="_blank" rel="noopener noreferrer" style="color: var(--gold-500); font-weight: 600;">온라인 폼으로 컨설팅 의뢰하기</a></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-info-full">
+                        <i class="fas fa-info-circle"></i> <div>신속하고 정확한 업무 처리를 위해 <b>전화, 이메일 및 온라인 폼</b>을 통한 상담을 진행하고 있습니다. 편하신 방법으로 문의해 주십시오.</div>
+                    </div>
                 </div>
             </div>
             
             <div class="copyright">
-                &copy; 2026 Hyunwon Administrative Office & Tae-Yong Kim. All rights reserved.
+                &copy; 2026 HyeonWon Licensed Administrative Attorney's Office & Tae-Yong Kim. All rights reserved.
             </div>
         </div>
     </footer>
@@ -719,6 +765,14 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // 커스텀 토스트 알림 표시 함수
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(function(){ toast.classList.remove("show"); }, 3000);
+        }
+
         // 다국어 번역 (구글 번역 트리거)
         function changeLanguage(langCode, element) {
             if (element) {
@@ -739,7 +793,7 @@
                     selectField.dispatchEvent(evt);
                 }
             } else {
-                alert("구글 번역 시스템 로딩 중입니다. 잠시 후 클릭해주세요.");
+                showToast("구글 번역 시스템 로딩 중입니다. 잠시 후 다시 클릭해주세요.");
             }
         }
     </script>
