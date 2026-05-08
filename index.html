@@ -39,21 +39,18 @@
             line-height: 1.6;
             background-color: #ffffff;
             -webkit-font-smoothing: antialiased;
-            /* 기존 keep-all(단어유지) 제거. 번역 시 가장 큰 레이아웃 파괴 주범임 */
             word-break: break-word; 
             overflow-wrap: anywhere !important; 
         }
 
-        /* 구글 번역 시 생성되는 태그 및 번역 상태 전용 강제 줄바꿈 
-           (특히 띄어쓰기 없는 일본어/중국어 문장 박스 탈출 완벽 방지) */
+        /* 구글 번역 시 생성되는 태그 및 번역 상태 전용 강제 줄바꿈 */
         font, .translated-ltr *, .translated-rtl * {
-            word-break: break-all !important; /* 공간이 부족하면 무조건 글자 단위로 끊음 */
+            word-break: break-all !important; 
             overflow-wrap: anywhere !important;
             white-space: normal !important;
         }
         
-        /* 글씨가 밑으로 흘러내려 다른 화면을 가리는 현상 방지: 
-           모든 컨텐츠를 부모 박스가 무조건 온전히 감싸도록 높이 강제 조정 */
+        /* 높이 강제 조정 */
         h1, h2, h3, h4, h5, p, div, span, a, li, strong, 
         .service-card, .feature-box, .pub-card, .btn, .cert-badge, .hero-content {
             overflow-wrap: anywhere !important;
@@ -67,11 +64,9 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; width: 100%; height: auto; }
         
-        /* 기기별 맞춤 줄바꿈 제어 유틸리티 */
         .pc-br { display: block; }
         .mo-br { display: none; }
 
-        /* 페이지 오버 (SPA) 핵심 CSS */
         .page-section { 
             display: none; 
             min-height: calc(100vh - 100px); 
@@ -83,10 +78,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 서브페이지용 공통 여백: 상단 메뉴가 조금 커져도 안 가리도록 여유 확보 */
         .sub-page { padding: max(140px, 15vh) 0 100px; background-color: var(--slate-50); }
 
-        /* 섹션 헤더 (서브 페이지 타이틀) */
         .section-header { text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; }
         .section-header .badge {
             display: inline-block; padding: 6px 16px; background: rgba(212, 175, 55, 0.1); color: var(--gold-600);
@@ -96,7 +89,7 @@
         .section-header h2 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; color: var(--slate-900); }
         .section-header p { font-size: 1.15rem; color: var(--text-secondary); max-width: 750px; margin: 0 auto; }
 
-        /* 글래스모피즘 네비게이션 */
+        /* 네비게이션 & 로고 */
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
             background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -107,30 +100,45 @@
         .navbar-top a:hover, .navbar-top a.active { color: white; font-weight: 600; }
         .navbar-main { padding: 20px 0; position: relative; }
         .navbar-main .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.5px; flex-shrink: 1; max-width: 100%; word-break: break-all; } /* 로고 축소 허용 */
+        
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            cursor: pointer; 
+            flex-shrink: 0; 
+            max-width: calc(100vw - 80px); /* 모바일 햄버거 메뉴 공간 확보 */
+            font-size: 1.5rem; /* Fallback 텍스트 로고용 폰트 사이즈 */
+            font-weight: 800; 
+            color: var(--slate-900); 
+            letter-spacing: -0.5px;
+        }
+        /* Fallback 텍스트 로고 포인트 색상 */
         .logo span { color: var(--gold-600); }
+        
+        .logo img { flex-shrink: 0; max-width: 100%; }
+        .logo .logo-symbol { height: 50px; width: auto; object-fit: contain; }
+        .logo .logo-text { height: 42px; width: auto; object-fit: contain; }
         
         .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
         .nav-links a { 
             font-weight: 600; font-size: 0.95rem; color: var(--slate-800); 
             transition: var(--transition); padding-bottom: 5px; border-bottom: 2px solid transparent;
-            /* 번역 시 메뉴가 길어지면 자연스럽게 줄바꿈 허용 */
             white-space: normal; text-align: center; line-height: 1.3;
         }
         .nav-links a:hover { color: var(--gold-600); }
         .nav-links a.active { color: var(--gold-600); border-bottom-color: var(--gold-600); }
 
-        /* 모바일 햄버거 메뉴 버튼 */
         .mobile-menu-btn { display: none; font-size: 1.5rem; color: var(--slate-900); cursor: pointer; flex-shrink: 0; }
 
-        /* 히어로 섹션 (Home 화면) */
+        /* 히어로 섹션 */
         .hero {
             min-height: 100vh; height: auto;
             align-items: center; display: flex;
             background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop') center/cover;
             color: white; 
-            padding-top: max(150px, 18vh); padding-bottom: 80px; /* 네비게이션 팽창 대비 */
+            padding-top: max(150px, 18vh); padding-bottom: 80px;
         }
         .hero-content { max-width: 900px; width: 100%; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
         .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; white-space: normal; }
@@ -150,7 +158,6 @@
         .profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 50px; padding: 50px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); align-items: start; }
         .profile-left { text-align: center; border-right: 1px solid var(--slate-100); padding-right: 40px; min-width: 0; display: flex; flex-direction: column; align-items: center; }
         
-        /* 프로필 이미지 */
         .profile-img { width: 180px; height: 180px; border-radius: 50%; background: var(--slate-100); margin: 0 auto 20px; border: 3px solid var(--gold-500); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-shrink: 0; }
         .profile-img img { width: 100%; height: 100%; object-fit: cover; }
         
@@ -197,7 +204,7 @@
         .service-card h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 15px; color: var(--slate-900); line-height: 1.4; }
         .service-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
         
-        .service-points { border-top: 1px dashed var(--slate-100); padding-top: 20px; margin-top: auto; } /* 밀어내기 방향 수정 */
+        .service-points { border-top: 1px dashed var(--slate-100); padding-top: 20px; margin-top: auto; }
         .service-points li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: var(--slate-800); font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
         .service-points li i { color: var(--gold-600); margin-top: 3px; flex-shrink: 0; }
         .service-points li div { min-width: 0; flex: 1; display: flex; flex-direction: column; }
@@ -241,7 +248,6 @@
         
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
 
-        /* * 1차 브레이크포인트: 네비게이션 공간 최적화 (1090px) */
         @media (max-width: 1090px) {
             .mobile-menu-btn { display: block; }
             .navbar-main .nav-links { 
@@ -261,7 +267,6 @@
             .nav-links a.active { border-left-color: var(--gold-600); }
         }
 
-        /* 2차 브레이크포인트: 태블릿 최적화 (992px) */
         @media (max-width: 992px) {
             .hero { align-items: flex-start; padding-top: 160px; }
             .hero-content { margin-top: 20px; }
@@ -276,8 +281,10 @@
             .mo-br { display: block; }
         }
 
-        /* 3차 브레이크포인트: 모바일 최적화 (768px) */
         @media (max-width: 768px) {
+            .logo .logo-symbol { height: 40px; }
+            .logo .logo-text { height: 32px; }
+
             .hero h1 { font-size: 2.1rem; margin-bottom: 15px; line-height: 1.35; }
             .hero p { font-size: 1.05rem; margin-bottom: 8px; line-height: 1.5; }
             .hero p.last-desc { margin-bottom: 30px; }
@@ -293,7 +300,6 @@
             .section-header h2 { font-size: 2.1rem; }
         }
 
-        /* 구글 번역기 UI 완벽 숨김 처리 */
         .skiptranslate { display: none !important; }
         body.skiptranslate { display: block !important; top: 0px !important; position: static !important; }
         html { top: 0px !important; }
@@ -303,7 +309,6 @@
         .goog-text-highlight { background: none !important; box-shadow: none !important; }
         #google_translate_element { display: none !important; }
 
-        /* 커스텀 토스트 알림 CSS */
         .custom-toast {
             visibility: hidden;
             min-width: 250px;
@@ -328,8 +333,6 @@
             bottom: 50px;
         }
 
-        /* ===== 다국어 번역 상태 전용 CSS ===== */
-        /* 외국어로 번역 시 어색해지는 한국어 전용 수동 줄바꿈(<br>) 태그 숨김 처리 */
         html.translated-ltr .pc-br, html.translated-ltr .mo-br,
         html.translated-rtl .pc-br, html.translated-rtl .mo-br {
             display: none !important;
@@ -353,7 +356,6 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <nav class="navbar">
-        <!-- 번역 제외(notranslate) 구역: 언어 선택 텍스트가 번역되어 헤더가 파괴되는 것 방지 -->
         <div class="navbar-top notranslate">
             <div class="container" id="lang-menu">
                 <a onclick="changeLanguage('ko', this)" class="active">KOR</a> | 
@@ -366,8 +368,11 @@
         </div>
         <div class="navbar-main">
             <div class="container">
-                <!-- 번역 제외 구역: 로고 텍스트 비대화 방지 -->
-                <a onclick="showPage('home')" class="logo notranslate">현원 <span>행정사 사무소</span></a>
+                <!-- 로고 영역: 이미지 로드 실패 시 텍스트로 전환 (onerror) -->
+                <a onclick="showPage('home')" class="logo notranslate" id="main-logo-link">
+                    <img src="hyeonwon_symbol_v17.png" alt="현원 로고 심볼" class="logo-symbol" onerror="handleLogoError()">
+                    <img src="hyeonwon_wordmark.png" alt="현원 행정사 사무소 로고 텍스트" class="logo-text" onerror="handleLogoError()">
+                </a>
                 <i class="fas fa-bars mobile-menu-btn" onclick="toggleMenu()"></i>
                 <div class="nav-links">
                     <a onclick="showPage('home')" class="active" id="nav-home">홈페이지</a>
@@ -897,6 +902,18 @@
             showPage('home');
         };
 
+        // 로고 이미지 로딩 실패 시 텍스트 로고로 우회(Fallback) 처리
+        let isLogoErrorHandled = false;
+        function handleLogoError() {
+            if (isLogoErrorHandled) return;
+            isLogoErrorHandled = true;
+            const logoLink = document.getElementById('main-logo-link');
+            if (logoLink) {
+                logoLink.innerHTML = '현원 <span>행정사 사무소</span>';
+                console.warn("로고 이미지를 찾을 수 없어 텍스트 로고로 전환되었습니다. 이미지 파일(hyeonwon_symbol_v17.png 등)의 경로를 확인해 주세요.");
+            }
+        }
+
         // 모바일 햄버거 메뉴 토글 기능
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
@@ -905,7 +922,6 @@
 
         // 페이지 전환 (SPA 구조)
         function showPage(pageId) {
-            // 모든 페이지 숨김 처리
             document.querySelectorAll('.page-section').forEach(function(page) {
                 page.style.display = 'none';
                 page.classList.remove('active');
@@ -915,17 +931,14 @@
                 link.classList.remove('active');
             });
 
-            // 모바일 메뉴가 열려있을 경우 닫기
             const navLinks = document.querySelector('.nav-links');
             if(navLinks.classList.contains('show')) {
                 navLinks.classList.remove('show');
             }
 
-            // 선택된 페이지만 보이기
             const activePage = document.getElementById(pageId);
             activePage.classList.add('active');
             
-            // 홈 화면은 flex, 나머지는 block 처리하여 UI 분리 완벽 보장
             if (pageId === 'home') {
                 activePage.style.display = 'flex';
             } else {
