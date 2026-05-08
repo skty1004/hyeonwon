@@ -78,7 +78,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .sub-page { padding: max(140px, 15vh) 0 100px; background-color: var(--slate-50); }
+        /* 서브페이지용 공통 여백: 커진 로고(메뉴바)에 가려지지 않도록 상단 여백 증가 */
+        .sub-page { padding: max(190px, 18vh) 0 100px; background-color: var(--slate-50); }
 
         .section-header { text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; }
         .section-header .badge {
@@ -104,7 +105,7 @@
         .logo { 
             display: flex; 
             align-items: center; 
-            gap: 10px; 
+            gap: 15px; 
             cursor: pointer; 
             flex-shrink: 0; 
             max-width: calc(100vw - 80px); /* 모바일 햄버거 메뉴 공간 확보 */
@@ -117,8 +118,9 @@
         .logo span { color: var(--gold-600); }
         
         .logo img { flex-shrink: 0; max-width: 100%; }
-        .logo .logo-symbol { height: 50px; width: auto; object-fit: contain; }
-        .logo .logo-text { height: 42px; width: auto; object-fit: contain; }
+        /* 로고 이미지 크기 2배 확대 (50px -> 100px, 42px -> 84px) */
+        .logo .logo-symbol { height: 100px; width: auto; object-fit: contain; }
+        .logo .logo-text { height: 84px; width: auto; object-fit: contain; }
         
         .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
         .nav-links a { 
@@ -138,7 +140,8 @@
             background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop') center/cover;
             color: white; 
-            padding-top: max(150px, 18vh); padding-bottom: 80px;
+            /* 커진 메뉴바에 가려지지 않도록 패딩 대폭 상향 */
+            padding-top: max(200px, 20vh); padding-bottom: 80px;
         }
         .hero-content { max-width: 900px; width: 100%; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
         .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; white-space: normal; }
@@ -230,6 +233,22 @@
         footer { background: var(--slate-900); color: var(--text-muted); padding: 80px 0 30px; border-top: 5px solid var(--gold-600); }
         .footer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; margin-bottom: 60px; }
         .footer-brand { min-width: 0; display: flex; flex-direction: column; }
+        
+        /* 푸터 로고 스타일 */
+        .footer-logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+            font-size: 1.8rem; /* Fallback 텍스트 로고용 */
+            font-weight: 800; 
+            color: white; 
+        }
+        .footer-logo span { color: var(--gold-600); }
+        .footer-logo img { flex-shrink: 0; max-width: 100%; }
+        .footer-logo .footer-logo-symbol { height: 80px; width: auto; object-fit: contain; }
+        .footer-logo .footer-logo-text { height: 67px; width: auto; object-fit: contain; }
+
         .footer-right-group { display: flex; flex-direction: column; gap: 15px; min-width: 0; }
         .footer-cols-wrapper { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; }
         .footer-info-full { display: flex; align-items: flex-start; gap: 10px; color: #94a3b8; font-size: 0.9rem; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -268,7 +287,7 @@
         }
 
         @media (max-width: 992px) {
-            .hero { align-items: flex-start; padding-top: 160px; }
+            .hero { align-items: flex-start; padding-top: 200px; }
             .hero-content { margin-top: 20px; }
             
             .profile-grid, .features-grid, .footer-grid, .footer-cols-wrapper { grid-template-columns: minmax(0, 1fr); }
@@ -282,8 +301,13 @@
         }
 
         @media (max-width: 768px) {
-            .logo .logo-symbol { height: 40px; }
-            .logo .logo-text { height: 32px; }
+            /* 모바일에서도 동일하게 2배 확대 (40px -> 80px, 32px -> 64px) */
+            .logo .logo-symbol { height: 80px; }
+            .logo .logo-text { height: 64px; }
+            
+            /* 푸터 모바일 로고 크기 조정 */
+            .footer-logo .footer-logo-symbol { height: 60px; }
+            .footer-logo .footer-logo-text { height: 50px; }
 
             .hero h1 { font-size: 2.1rem; margin-bottom: 15px; line-height: 1.35; }
             .hero p { font-size: 1.05rem; margin-bottom: 8px; line-height: 1.5; }
@@ -859,7 +883,11 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h2>현원 행정사 사무소</h2>
+                    <!-- 푸터 영역: 이미지 로드 실패 시 텍스트로 전환 (onerror) -->
+                    <div class="footer-logo notranslate" id="footer-logo-link">
+                        <img src="hyeonwon_symbol_v17.png" alt="현원 로고 심볼" class="footer-logo-symbol" onerror="handleFooterLogoError()">
+                        <img src="hyeonwon_wordmark.png" alt="현원 행정사 사무소 로고 텍스트" class="footer-logo-text" onerror="handleFooterLogoError()">
+                    </div>
                     <p style="margin-top:15px; color:#cbd5e1;">단순 서류 대행을 넘어 기업의 비전과 가치를 증명합니다.<br>출입국 대행 역량 · 학술적 통찰력 · 데이터 분석 능력을 결합하여<br>의뢰인의 성공을 견인하겠습니다.</p>
                 </div>
                 
@@ -902,7 +930,7 @@
             showPage('home');
         };
 
-        // 로고 이미지 로딩 실패 시 텍스트 로고로 우회(Fallback) 처리
+        // 상단 로고 이미지 로딩 실패 시 텍스트 로고로 우회(Fallback) 처리
         let isLogoErrorHandled = false;
         function handleLogoError() {
             if (isLogoErrorHandled) return;
@@ -910,7 +938,19 @@
             const logoLink = document.getElementById('main-logo-link');
             if (logoLink) {
                 logoLink.innerHTML = '현원 <span>행정사 사무소</span>';
-                console.warn("로고 이미지를 찾을 수 없어 텍스트 로고로 전환되었습니다. 이미지 파일(hyeonwon_symbol_v17.png 등)의 경로를 확인해 주세요.");
+                console.warn("상단 로고 이미지를 찾을 수 없어 텍스트 로고로 전환되었습니다.");
+            }
+        }
+        
+        // 하단 푸터 로고 이미지 로딩 실패 시 텍스트 로고로 우회(Fallback) 처리
+        let isFooterLogoErrorHandled = false;
+        function handleFooterLogoError() {
+            if (isFooterLogoErrorHandled) return;
+            isFooterLogoErrorHandled = true;
+            const footerLogoLink = document.getElementById('footer-logo-link');
+            if (footerLogoLink) {
+                footerLogoLink.innerHTML = '현원 <span>행정사 사무소</span>';
+                console.warn("하단 로고 이미지를 찾을 수 없어 텍스트 로고로 전환되었습니다.");
             }
         }
 
