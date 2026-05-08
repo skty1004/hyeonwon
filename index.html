@@ -78,8 +78,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 서브페이지용 공통 여백: 커진 로고(메뉴바)에 가려지지 않도록 상단 여백 증가 */
-        .sub-page { padding: max(190px, 18vh) 0 100px; background-color: var(--slate-50); }
+        /* 서브페이지용 공통 여백 */
+        .sub-page { padding: max(140px, 15vh) 0 100px; background-color: var(--slate-50); }
 
         .section-header { text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; }
         .section-header .badge {
@@ -99,13 +99,13 @@
         .navbar-top .container { display: flex; justify-content: flex-end; gap: 15px; flex-wrap: wrap; }
         .navbar-top a { transition: color 0.2s; white-space: nowrap; }
         .navbar-top a:hover, .navbar-top a.active { color: white; font-weight: 600; }
-        .navbar-main { padding: 20px 0; position: relative; }
+        .navbar-main { padding: 15px 0; position: relative; } /* 네비게이션 상하 여백 약간 조정 */
         .navbar-main .container { display: flex; justify-content: space-between; align-items: center; }
         
         .logo { 
             display: flex; 
             align-items: center; 
-            gap: 15px; 
+            gap: 12px; 
             cursor: pointer; 
             flex-shrink: 1; /* 로고 컨테이너 축소 허용 */
             min-width: 0; /* 영역 폭주 차단 */
@@ -118,16 +118,16 @@
         /* Fallback 텍스트 로고 포인트 색상 */
         .logo span { color: var(--gold-600); }
         
-        /* 원본 이미지가 너무 커도 비율에 맞게 강제 조절 */
+        /* 원본 이미지가 너무 커도 비율에 맞게 쏙 들어가도록 조절 */
         .logo img { 
             flex-shrink: 1; 
             min-width: 0;
             max-width: 100%; 
             object-fit: contain; 
         }
-        /* 로고 이미지 크기 확대 (최대 높이 제한 추가로 원본 해상도 폭주 방지) */
-        .logo .logo-symbol { height: 100px; width: auto; max-height: 100px; }
-        .logo .logo-text { height: 84px; width: auto; max-height: 84px; }
+        /* 상단 네비게이션 바 한계치에 맞춘 최대 높이(max-height) 부여 */
+        .logo .logo-symbol { height: auto; width: auto; max-height: 55px; }
+        .logo .logo-text { height: auto; width: auto; max-height: 45px; }
         
         .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
         .nav-links a { 
@@ -147,8 +147,7 @@
             background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop') center/cover;
             color: white; 
-            /* 커진 메뉴바에 가려지지 않도록 패딩 대폭 상향 */
-            padding-top: max(200px, 20vh); padding-bottom: 80px;
+            padding-top: max(140px, 15vh); padding-bottom: 80px;
         }
         .hero-content { max-width: 900px; width: 100%; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
         .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; white-space: normal; }
@@ -252,6 +251,7 @@
             color: white; 
             max-width: 100%;
             min-width: 0;
+            flex-wrap: wrap;
         }
         .footer-logo span { color: var(--gold-600); }
         .footer-logo img { 
@@ -260,8 +260,8 @@
             max-width: 100%; 
             object-fit: contain; 
         }
-        .footer-logo .footer-logo-symbol { height: 80px; width: auto; max-height: 80px; }
-        .footer-logo .footer-logo-text { height: 67px; width: auto; max-height: 67px; }
+        .footer-logo .footer-logo-symbol { height: auto; width: auto; max-height: 70px; }
+        .footer-logo .footer-logo-text { height: auto; width: auto; max-height: 55px; }
 
         .footer-right-group { display: flex; flex-direction: column; gap: 15px; min-width: 0; }
         .footer-cols-wrapper { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; }
@@ -301,7 +301,7 @@
         }
 
         @media (max-width: 992px) {
-            .hero { align-items: flex-start; padding-top: 200px; }
+            .hero { align-items: flex-start; padding-top: 140px; } /* 여백 원상복구 */
             .hero-content { margin-top: 20px; }
             
             .profile-grid, .features-grid, .footer-grid, .footer-cols-wrapper { grid-template-columns: minmax(0, 1fr); }
@@ -315,14 +315,13 @@
         }
 
         @media (max-width: 768px) {
-            /* 모바일에서도 동일하게 2배 확대 (40px -> 80px, 32px -> 64px) */
-            /* 단, 원본이 너무 커서 화면을 뚫는 것을 막기 위해 max-height를 부여 */
-            .logo .logo-symbol { height: 80px; max-height: 80px; }
-            .logo .logo-text { height: 64px; max-height: 64px; }
+            /* 모바일 헤더 높이에 맞게 유연한 제한 */
+            .logo .logo-symbol { max-height: 40px; }
+            .logo .logo-text { max-height: 32px; }
             
             /* 푸터 모바일 로고 크기 조정 */
-            .footer-logo .footer-logo-symbol { height: 60px; max-height: 60px; }
-            .footer-logo .footer-logo-text { height: 50px; max-height: 50px; }
+            .footer-logo .footer-logo-symbol { max-height: 55px; }
+            .footer-logo .footer-logo-text { max-height: 45px; }
 
             .hero h1 { font-size: 2.1rem; margin-bottom: 15px; line-height: 1.35; }
             .hero p { font-size: 1.05rem; margin-bottom: 8px; line-height: 1.5; }
