@@ -125,9 +125,9 @@
             max-width: 100%; 
             object-fit: contain; 
         }
-        /* 상단 네비게이션 바 한계치에 맞춘 최대 높이(max-height) 부여 */
-        .logo .logo-symbol { height: auto; width: auto; max-height: 55px; }
-        .logo .logo-text { height: auto; width: auto; max-height: 45px; }
+        /* 상단 네비게이션 바 한계치에 맞춘 최대 높이(max-height) 부여 (30% 축소) */
+        .logo .logo-symbol { height: auto; width: auto; max-height: 38px; }
+        .logo .logo-text { height: auto; width: auto; max-height: 31px; }
         
         .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
         .nav-links a { 
@@ -225,7 +225,7 @@
 
         /* 학술 연구 및 논문 */
         .pub-container { max-width: 1000px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.04); display: flex; flex-direction: column; }
-        .pub-card { display: flex; align-items: flex-start; gap: 30px; padding: 35px; background: white; border-bottom: 1px solid var(--slate-100); transition: var(--transition); }
+        .pub-card { display: flex; align-items: flex-start; gap: 30px; padding: 35px; background: white; border-bottom: 1px solid var(--slate-100); transition: var(--transition); cursor: pointer; }
         .pub-card:last-child { border-bottom: none; }
         .pub-card:hover { background: var(--slate-50); padding-left: 45px; border-left: 4px solid var(--gold-500); }
         .pub-year { font-weight: 900; color: var(--gold-600); font-size: 1.4rem; min-width: 70px; padding-top: 2px; flex-shrink: 0; }
@@ -260,8 +260,9 @@
             max-width: 100%; 
             object-fit: contain; 
         }
-        .footer-logo .footer-logo-symbol { height: auto; width: auto; max-height: 70px; }
-        .footer-logo .footer-logo-text { height: auto; width: auto; max-height: 55px; }
+        /* 푸터 로고 크기 조정 (50% 축소) */
+        .footer-logo .footer-logo-symbol { height: auto; width: auto; max-height: 35px; }
+        .footer-logo .footer-logo-text { height: auto; width: auto; max-height: 27px; }
 
         .footer-right-group { display: flex; flex-direction: column; gap: 15px; min-width: 0; }
         .footer-cols-wrapper { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; }
@@ -315,13 +316,13 @@
         }
 
         @media (max-width: 768px) {
-            /* 모바일 헤더 높이에 맞게 유연한 제한 */
-            .logo .logo-symbol { max-height: 40px; }
-            .logo .logo-text { max-height: 32px; }
+            /* 모바일 헤더 높이에 맞게 유연한 제한 (상단 30% 축소) */
+            .logo .logo-symbol { max-height: 28px; }
+            .logo .logo-text { max-height: 22px; }
             
-            /* 푸터 모바일 로고 크기 조정 */
-            .footer-logo .footer-logo-symbol { max-height: 55px; }
-            .footer-logo .footer-logo-text { max-height: 45px; }
+            /* 푸터 모바일 로고 크기 조정 (하단 50% 축소) */
+            .footer-logo .footer-logo-symbol { max-height: 27px; }
+            .footer-logo .footer-logo-text { max-height: 22px; }
 
             .hero h1 { font-size: 2.1rem; margin-bottom: 15px; line-height: 1.35; }
             .hero p { font-size: 1.05rem; margin-bottom: 8px; line-height: 1.5; }
@@ -832,60 +833,72 @@
                 <p>현원 행정사 사무소는 창업 생태계와 디지털 전환(DX)에 관한 논문을 지속적으로 게재하며 학문을 바탕으로 실무의 뼈대를 세우고 있습니다.</p>
             </div>
             <div class="pub-container">
-                <div class="pub-card">
+                <div class="pub-card" onclick="window.open('What Affects Digital Divide for the Elderly During.pdf', '_blank')" title="논문 원문 보기">
                     <div class="pub-year">2025</div>
                     <div class="pub-info">
                         <div class="pub-tags">
                             <span class="pub-tag">Journal of Business Convergence</span>
                             <span class="pub-tag" style="background:var(--gold-600);">Corresponding Author</span>
                         </div>
-                        <h4 style="margin-top:10px;">팬데믹 시기 고령층의 디지털 격차에 미치는 요인: 전자정부 서비스 실증 연구</h4>
+                        <h4 style="margin-top:10px;">팬데믹 시기 고령층의 디지털 격차에 미치는 요인: 전자정부 서비스 실증 연구 <i class="fas fa-external-link-alt" style="font-size: 0.85rem; color: var(--gold-500); margin-left: 5px;"></i></h4>
                         <p>What Affects Digital Divide for the Elderly During the Pandemic: An Empirical Study of Use of COVID-19 E-government Services</p>
                     </div>
                 </div>
                 
-                <div class="pub-card">
+                <div class="pub-card" onclick="window.open('Exploring Startup Failures An Empirical Study of F.pdf', '_blank')" title="논문 원문 보기">
                     <div class="pub-year">2025</div>
                     <div class="pub-info">
                         <div class="pub-tags">
                             <span class="pub-tag">벤처창업연구 (KCI)</span>
                         </div>
-                        <h4 style="margin-top:10px;">창업자들의 실패 인식에 대한 연구: ERIS 모델과 AHP을 중심으로</h4>
+                        <h4 style="margin-top:10px;">창업자들의 실패 인식에 대한 연구: ERIS 모델과 AHP을 중심으로 <i class="fas fa-external-link-alt" style="font-size: 0.85rem; color: var(--gold-500); margin-left: 5px;"></i></h4>
                         <p>Exploring Startup Failures: An Empirical Study of Failure Factors Using the ERIS Model and the AHP</p>
                     </div>
                 </div>
                 
-                <div class="pub-card">
+                <div class="pub-card" onclick="window.open('디지털 전환 시대 중고령자의 가구 유형과 삶의 만족 디지털 활용 수준의 매개효과.pdf', '_blank')" title="논문 원문 보기">
                     <div class="pub-year">2024</div>
                     <div class="pub-info">
                         <div class="pub-tags">
                             <span class="pub-tag">한국산학기술학회논문지 (KCI)</span>
                             <span class="pub-tag" style="background:var(--slate-500);">1st Author</span>
                         </div>
-                        <h4 style="margin-top:10px;">디지털 전환 시대, 중고령자의 가구 유형과 삶의 만족: 디지털 활용 수준의 매개효과</h4>
+                        <h4 style="margin-top:10px;">디지털 전환 시대, 중고령자의 가구 유형과 삶의 만족: 디지털 활용 수준의 매개효과 <i class="fas fa-external-link-alt" style="font-size: 0.85rem; color: var(--gold-500); margin-left: 5px;"></i></h4>
                         <p>Digital Transformation Era, Middle-Aged and Elderly’s Household Type and Life Satisfaction</p>
                     </div>
                 </div>
 
-                <div class="pub-card">
+                <div class="pub-card" onclick="window.open('국방통합재정정보시스템의 품질 요인이 사용자 만족과 업무성과에 미치는 영향 정보시스템 성공모델 관점으로.pdf', '_blank')" title="논문 원문 보기">
                     <div class="pub-year">2023</div>
                     <div class="pub-info">
                         <div class="pub-tags">
                             <span class="pub-tag">한국산학기술학회논문지 (KCI)</span>
                             <span class="pub-tag" style="background:var(--slate-500);">1st Author</span>
                         </div>
-                        <h4 style="margin-top:10px;">국방통합재정정보시스템(NDIFIS)의 품질 요인이 사용자 만족과 업무성과에 미치는 영향</h4>
+                        <h4 style="margin-top:10px;">국방통합재정정보시스템(NDIFIS)의 품질 요인이 사용자 만족과 업무성과에 미치는 영향 <i class="fas fa-external-link-alt" style="font-size: 0.85rem; color: var(--gold-500); margin-left: 5px;"></i></h4>
                         <p>The Effect of Quality of the NDIFIS on User Satisfaction and Work Performance: Information System Success Model</p>
                     </div>
                 </div>
+
+                <div class="pub-card" onclick="window.open('중고령자의 가구 유형이 코로나19로 인한 디지털 기술인식 변화에 미치는 영향 디지털 정보화 수준의 매개효과를 중심으로.pdf', '_blank')" title="논문 원문 보기">
+                    <div class="pub-year">2022</div>
+                    <div class="pub-info">
+                        <div class="pub-tags">
+                            <span class="pub-tag">한국산학기술학회논문지 (KCI)</span>
+                            <span class="pub-tag" style="background:var(--slate-500);">1st Author</span>
+                        </div>
+                        <h4 style="margin-top:10px;">중고령자의 가구 유형이 코로나19로 인한 디지털 기술인식 변화에 미치는 영향: 디지털 정보화 수준의 매개효과를 중심으로 <i class="fas fa-external-link-alt" style="font-size: 0.85rem; color: var(--gold-500); margin-left: 5px;"></i></h4>
+                        <p>The Effect of the Middle-aged and Elderly Household Type on Change in the Perception of Digital Technology during COVID19</p>
+                    </div>
+                </div>
                 
-                <div class="pub-card">
+                <div class="pub-card" onclick="window.open('델파이 기법과 AHP를 이용한 글로벌 창업이주 요인 탐색 연구 국내 인바운드 사례를 중심으로.pdf', '_blank')" title="논문 원문 보기">
                     <div class="pub-year">2022</div>
                     <div class="pub-info">
                         <div class="pub-tags">
                             <span class="pub-tag">벤처창업연구 (KCI)</span>
                         </div>
-                        <h4 style="margin-top:10px;">델파이 기법과 AHP를 이용한 글로벌 창업이주 요인 탐색 연구: 국내 인바운드 사례를 중심으로</h4>
+                        <h4 style="margin-top:10px;">델파이 기법과 AHP를 이용한 글로벌 창업이주 요인 탐색 연구: 국내 인바운드 사례를 중심으로 <i class="fas fa-external-link-alt" style="font-size: 0.85rem; color: var(--gold-500); margin-left: 5px;"></i></h4>
                         <p>Exploring Factors for Global Startup Migration using Delphi and AHP: Focusing on Inbound Cases to Korea</p>
                     </div>
                 </div>
