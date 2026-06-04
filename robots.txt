@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.hyunwon.com/sitemap.xml
+Sitemap: https://www.hyunwon.xyz/sitemap.xml
