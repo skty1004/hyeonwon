@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 페이지 제목 (Title) -->
     <title>현원 행정사 사무소 | 출입국 및 창업기업 인허가 프리미엄 컨설팅</title>
     
+    <!-- 검색엔진 검색어(Keywords) 최적화 -->
+    <meta name="keywords" content="현원행정사, 현원 행정사, 현원 행정사 사무소, 현원행정사 사무소, 현원 행정사사무소, 김태용, 김태용행정사, 김태용 행정사, 김태용 대표행정사, 김태용 대표 행정사, 김태용 대표, 대표 김태용, 김태용대표, 대표김태용, 행정사 김태용, 행정사김태용, 행정사">
+    
+    <!-- 페이지 설명 (Description) -->
+    <meta name="description" content="출입국 대행 및 창업기업 인허가 프리미엄 컨설팅 전문 현원 행정사 사무소입니다. 학계의 통찰력과 공공부문 재정업무 실무, 데이터 분석 역량을 결합하여 기업과 개인을 위한 최적의 맞춤형 행정 솔루션을 제공합니다.">
+    
+    <!-- 오픈 그래프 (Open Graph) - 소셜 미디어(카카오톡, 페이스북 등) 공유용 썸네일 -->
+    <meta property="og:type" content="website"> 
+    <meta property="og:title" content="현원 행정사 사무소 | 프리미엄 행정 컨설팅">
+    <meta property="og:description" content="출입국 대행 및 창업기업 인허가 프리미엄 컨설팅. 데이터 분석과 공공 실무를 결합한 최적의 행정 솔루션을 제공합니다.">
+    <!-- 주의: 실제 호스팅 되는 도메인 주소로 변경해주세요 -->
+    <meta property="og:image" content="https://www.hyunwon.com/pic.jpg"> 
+    <meta property="og:url" content="https://www.hyunwon.com">
+    
+    <!-- 트위터 카드 (Twitter Card) - 트위터 공유용 썸네일 -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="현원 행정사 사무소 | 프리미엄 행정 컨설팅">
+    <meta name="twitter:description" content="출입국 대행 및 창업기업 인허가 프리미엄 컨설팅. 데이터 분석과 공공 실무를 결합한 최적의 행정 솔루션을 제공합니다.">
+    <!-- 주의: 실제 호스팅 되는 도메인 주소로 변경해주세요 -->
+    <meta name="twitter:image" content="https://www.hyunwon.com/pic.jpg">
+    <meta name="twitter:domain" content="현원 행정사 사무소">
+        
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -30,7 +54,7 @@
         html, body { 
             overflow-x: hidden; 
             width: 100%;
-            max-width: 100vw; /* 화면 크기 초과 팽창 물리적 차단 */
+            max-width: 100vw;
         }
         
         body {
@@ -39,22 +63,23 @@
             line-height: 1.6;
             background-color: #ffffff;
             -webkit-font-smoothing: antialiased;
-            word-break: break-word; 
-            overflow-wrap: anywhere !important; 
+            /* 한국어 단어 중간 깨짐 방지 */
+            word-break: keep-all; 
+            overflow-wrap: break-word; 
         }
 
-        /* 구글 번역 시 생성되는 태그 및 번역 상태 전용 강제 줄바꿈 */
+        /* 구글 번역 시 생성되는 태그 보정 */
         font, .translated-ltr *, .translated-rtl * {
-            word-break: break-all !important; 
-            overflow-wrap: anywhere !important;
+            word-break: keep-all !important; 
+            overflow-wrap: break-word !important;
             white-space: normal !important;
         }
         
-        /* 높이 강제 조정 */
+        /* 높이 강제 조정 및 글자 넘침 방지 */
         h1, h2, h3, h4, h5, p, div, span, a, li, strong, 
         .service-card, .feature-box, .pub-card, .btn, .cert-badge, .hero-content {
-            overflow-wrap: anywhere !important;
-            word-wrap: break-word !important;
+            word-break: keep-all !important;
+            overflow-wrap: break-word !important;
             height: auto !important; 
             min-height: min-content !important;
         }
@@ -68,9 +93,15 @@
         .mo-br { display: none; }
 
         .page-section { 
-            display: none; 
+            display: none !important; 
             min-height: calc(100vh - 100px); 
             animation: fadeInPage 0.4s ease-out forwards;
+        }
+        .page-section.active { 
+            display: block !important; 
+        }
+        header#home.page-section.active { 
+            display: flex !important; 
         }
         
         @keyframes fadeInPage {
@@ -85,7 +116,6 @@
         .section-header .badge {
             display: inline-block; padding: 6px 16px; background: rgba(212, 175, 55, 0.1); color: var(--gold-600);
             border-radius: 30px; font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;
-            white-space: normal;
         }
         .section-header h2 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; color: var(--slate-900); }
         .section-header p { font-size: 1.15rem; color: var(--text-secondary); max-width: 750px; margin: 0 auto; }
@@ -99,33 +129,17 @@
         .navbar-top .container { display: flex; justify-content: flex-end; gap: 15px; flex-wrap: wrap; }
         .navbar-top a { transition: color 0.2s; white-space: nowrap; }
         .navbar-top a:hover, .navbar-top a.active { color: white; font-weight: 600; }
-        .navbar-main { padding: 15px 0; position: relative; } /* 네비게이션 상하 여백 약간 조정 */
+        .navbar-main { padding: 15px 0; position: relative; }
         .navbar-main .container { display: flex; justify-content: space-between; align-items: center; }
         
         .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            cursor: pointer; 
-            flex-shrink: 1; /* 로고 컨테이너 축소 허용 */
-            min-width: 0; /* 영역 폭주 차단 */
-            max-width: calc(100vw - 80px); /* 모바일 햄버거 메뉴 공간 확보 */
-            font-size: 1.5rem; /* Fallback 텍스트 로고용 폰트 사이즈 */
-            font-weight: 800; 
-            color: var(--slate-900); 
-            letter-spacing: -0.5px;
+            display: flex; align-items: center; gap: 12px; cursor: pointer; 
+            flex-shrink: 1; min-width: 0; max-width: calc(100vw - 80px);
+            font-size: 1.5rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.5px;
         }
-        /* Fallback 텍스트 로고 포인트 색상 */
         .logo span { color: var(--gold-600); }
         
-        /* 원본 이미지가 너무 커도 비율에 맞게 쏙 들어가도록 조절 */
-        .logo img { 
-            flex-shrink: 1; 
-            min-width: 0;
-            max-width: 100%; 
-            object-fit: contain; 
-        }
-        /* 상단 네비게이션 바 한계치에 맞춘 최대 높이(max-height) 부여 (30% 축소) */
+        .logo img { flex-shrink: 1; min-width: 0; max-width: 100%; object-fit: contain; }
         .logo .logo-symbol { height: auto; width: auto; max-height: 38px; }
         .logo .logo-text { height: auto; width: auto; max-height: 31px; }
         
@@ -133,7 +147,7 @@
         .nav-links a { 
             font-weight: 600; font-size: 0.95rem; color: var(--slate-800); 
             transition: var(--transition); padding-bottom: 5px; border-bottom: 2px solid transparent;
-            white-space: normal; text-align: center; line-height: 1.3;
+            text-align: center; line-height: 1.3;
         }
         .nav-links a:hover { color: var(--gold-600); }
         .nav-links a.active { color: var(--gold-600); border-bottom-color: var(--gold-600); }
@@ -142,29 +156,27 @@
 
         /* 히어로 섹션 */
         .hero {
-            min-height: 100vh; height: auto;
-            align-items: center; display: flex;
+            min-height: 100vh; height: auto; align-items: center; display: flex;
             background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop') center/cover;
-            color: white; 
-            padding-top: max(140px, 15vh); padding-bottom: 80px;
+            color: white; padding-top: max(140px, 15vh); padding-bottom: 80px;
         }
         .hero-content { max-width: 900px; width: 100%; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
-        .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; white-space: normal; }
+        .hero-label { display: inline-block; padding: 6px 14px; border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.85rem; margin-bottom: 25px; letter-spacing: 1.5px; color: var(--gold-500); font-weight: 700; }
         .hero h1 { font-size: 3.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 25px; letter-spacing: -1px; }
         .hero p { font-size: 1.25rem; color: var(--slate-100); font-weight: 300; margin-bottom: 12px; max-width: 800px; line-height: 1.5; }
         .hero p.last-desc { margin-bottom: 40px; }
         
         .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; width: 100%; }
         
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; border-radius: 4px; font-weight: 600; transition: var(--transition); border: 1px solid transparent; text-align: center; white-space: normal; line-height: 1.4; word-break: break-word; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; border-radius: 4px; font-weight: 600; transition: var(--transition); border: 1px solid transparent; text-align: center; line-height: 1.4; }
         .btn-gold { background-color: var(--gold-600); color: white; }
         .btn-gold:hover { background-color: #996b00; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(184, 134, 11, 0.2); }
         .btn-outline-white { background: transparent; color: white; border-color: rgba(255,255,255,0.5); }
         .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
         /* 프로필 섹션 */
-        .profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 50px; padding: 50px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); align-items: start; }
+        .profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 50px; padding: 50px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); border: 1px solid var(--slate-100); align-items: start; }
         .profile-left { text-align: center; border-right: 1px solid var(--slate-100); padding-right: 40px; min-width: 0; display: flex; flex-direction: column; align-items: center; }
         
         .profile-img { width: 180px; height: 180px; border-radius: 50%; background: var(--slate-100); margin: 0 auto 20px; border: 3px solid var(--gold-500); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-shrink: 0; }
@@ -174,13 +186,7 @@
         .profile-name p { color: var(--text-secondary); font-weight: 600; font-size: 1.1rem; margin-top: 5px; }
         
         .cert-badges { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; width: 100%; }
-        
-        .cert-badge { 
-            background: var(--slate-900); color: white; padding: 14px 16px; border-radius: 8px; 
-            font-size: 0.95rem; font-weight: 600; text-align: left; 
-            display: flex; align-items: flex-start; gap: 12px; line-height: 1.4; 
-            white-space: normal;
-        }
+        .cert-badge { background: var(--slate-900); color: white; padding: 14px 16px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; text-align: left; display: flex; align-items: flex-start; gap: 12px; line-height: 1.4; }
         .cert-badge.highlight { background: var(--gold-600); }
         .cert-badge i { color: var(--gold-500); flex-shrink: 0; margin-top: 3px; font-size: 1.1rem; }
         .cert-badge span { display: block; min-width: 0; flex: 1; }
@@ -233,34 +239,20 @@
         .pub-info h4 { font-size: 1.15rem; color: var(--slate-900); margin-bottom: 8px; font-weight: 700; line-height: 1.4; }
         .pub-info p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
         .pub-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .pub-tag { font-size: 0.8rem; background: var(--slate-800); color: white; padding: 4px 10px; border-radius: 4px; font-weight: 500; white-space: normal; line-height: 1.3; }
+        .pub-tag { font-size: 0.8rem; background: var(--slate-800); color: white; padding: 4px 10px; border-radius: 4px; font-weight: 500; line-height: 1.3; }
 
         /* 푸터 */
         footer { background: var(--slate-900); color: var(--text-muted); padding: 80px 0 30px; border-top: 5px solid var(--gold-600); }
         .footer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; margin-bottom: 60px; }
         .footer-brand { min-width: 0; display: flex; flex-direction: column; }
         
-        /* 푸터 로고 스타일 */
         .footer-logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            margin-bottom: 20px; 
-            font-size: 1.8rem; /* Fallback 텍스트 로고용 */
-            font-weight: 800; 
-            color: white; 
-            max-width: 100%;
-            min-width: 0;
-            flex-wrap: wrap;
+            display: flex; align-items: center; gap: 15px; margin-bottom: 20px; 
+            font-size: 1.8rem; font-weight: 800; color: white; 
+            max-width: 100%; min-width: 0; flex-wrap: wrap;
         }
         .footer-logo span { color: var(--gold-600); }
-        .footer-logo img { 
-            flex-shrink: 1; 
-            min-width: 0;
-            max-width: 100%; 
-            object-fit: contain; 
-        }
-        /* 푸터 로고 크기 조정 (50% 축소) */
+        .footer-logo img { flex-shrink: 1; min-width: 0; max-width: 100%; object-fit: contain; }
         .footer-logo .footer-logo-symbol { height: auto; width: auto; max-height: 35px; }
         .footer-logo .footer-logo-text { height: auto; width: auto; max-height: 27px; }
 
@@ -302,7 +294,7 @@
         }
 
         @media (max-width: 992px) {
-            .hero { align-items: flex-start; padding-top: 140px; } /* 여백 원상복구 */
+            .hero { align-items: flex-start; padding-top: 140px; }
             .hero-content { margin-top: 20px; }
             
             .profile-grid, .features-grid, .footer-grid, .footer-cols-wrapper { grid-template-columns: minmax(0, 1fr); }
@@ -315,15 +307,16 @@
             .mo-br { display: block; }
         }
 
+        /* ===== 모바일 완벽 대응 여백 축소 ===== */
         @media (max-width: 768px) {
-            /* 모바일 헤더 높이에 맞게 유연한 제한 (상단 30% 축소) */
             .logo .logo-symbol { max-height: 28px; }
             .logo .logo-text { max-height: 22px; }
-            
-            /* 푸터 모바일 로고 크기 조정 (하단 50% 축소) */
             .footer-logo .footer-logo-symbol { max-height: 27px; }
             .footer-logo .footer-logo-text { max-height: 22px; }
 
+            /* 공통 패딩 축소 */
+            .sub-page { padding: 100px 0 60px; }
+            
             .hero h1 { font-size: 2.1rem; margin-bottom: 15px; line-height: 1.35; }
             .hero p { font-size: 1.05rem; margin-bottom: 8px; line-height: 1.5; }
             .hero p.last-desc { margin-bottom: 30px; }
@@ -331,12 +324,24 @@
             .hero-buttons { flex-direction: column; gap: 12px; width: 100%; }
             .hero-buttons .btn { width: 100%; padding: 15px 20px; font-size: 1rem; }
 
+            /* 프로필, 박스, 서비스 카드 패딩 대폭 축소 (화면 넘침 방지) */
+            .profile-grid { padding: 25px 20px; gap: 30px; }
+            .profile-img { width: 150px; height: 150px; margin: 0 auto 20px; }
+            
+            .feature-box { padding: 30px 20px; gap: 15px; }
+            
             .services-grid { grid-template-columns: minmax(0, 1fr); }
+            .service-card { padding: 30px 20px; }
+            
             .resume-list { grid-template-columns: minmax(0, 1fr); }
-            .pub-card { flex-direction: column; gap: 15px; }
-            .pub-card:hover { padding-left: 35px; border-left: none; }
+            .profile-right h4 { font-size: 1.3rem; margin-top: 30px; }
+
+            .pub-card { flex-direction: column; gap: 15px; padding: 25px 20px; }
+            .pub-card:hover { padding-left: 20px; border-left: 1px solid var(--slate-100); } 
             
             .section-header h2 { font-size: 2.1rem; }
+            .footer-grid { gap: 30px; }
+            .footer-cols-wrapper { gap: 30px; }
         }
 
         .skiptranslate { display: none !important; }
@@ -407,7 +412,7 @@
         </div>
         <div class="navbar-main">
             <div class="container">
-                <!-- 로고 영역: 이미지 로드 실패 시 텍스트로 전환 (onerror) -->
+                <!-- 로고 영역 -->
                 <a onclick="showPage('home')" class="logo notranslate" id="main-logo-link">
                     <img src="hyeonwon_symbol_v17.png" alt="현원 로고 심볼" class="logo-symbol" onerror="handleLogoError()">
                     <img src="hyeonwon_wordmark.png" alt="현원 행정사 사무소 로고 텍스트" class="logo-text" onerror="handleLogoError()">
@@ -454,7 +459,8 @@
             <div class="profile-grid">
                 <div class="profile-left">
                     <div class="profile-img">
-                        <img src="apic.jpg" alt="김태용 행정사 프로필 사진" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=256&q=80'">
+                        <!-- 프로필 이미지 적용 (오류 발생 시 기본 이미지 없이 pic.jpg 만 의존) -->
+                        <img src="pic.jpg" alt="현원 행정사 사무소 김태용 대표 행정사 프로필 사진">
                     </div>
                     <div class="profile-name">
                         <h3>김태용</h3>
@@ -715,7 +721,7 @@
                     <h3>공공조달(B2G) 진입 및<br class="pc-br">조달청 MAS·우수제품</h3>
                     <p>공공 조달 시장 진입을 위해, 국가계약법과 공공 재정 실무에 정통한 전문가가 입찰부터 계약 체결까지 전략적으로 대응합니다.</p>
                     <ul class="service-points">
-                        <li><i class="fas fa-angle-right"></i> <div><strong>국가계 입찰</strong><span>경쟁입찰 제안서, 과업지시서 및 물품 규격서 작성 대행</span></div></li>
+                        <li><i class="fas fa-angle-right"></i> <div><strong>국가계약 입찰</strong><span>경쟁입찰 제안서, 과업지시서 및 물품 규격서 작성 대행</span></div></li>
                         <li><i class="fas fa-angle-right"></i> <div><strong>다수공급자계약(MAS)</strong><span>나라장터 종합쇼핑몰 등재를 위한 적격성 평가 및 2단계 경쟁 입찰 대행</span></div></li>
                         <li><i class="fas fa-angle-right"></i> <div><strong>우수/혁신 조달물품 지정</strong><span>조달 우수제품 지정 신청서 작성 및 조달청 심사 대비 컨설팅</span></div></li>
                         <li><i class="fas fa-angle-right"></i> <div><strong>조달 행정 분쟁 대응</strong><span>부정당업자 제재 처분 등에 대한 이의신청 및 구제 행정 자문</span></div></li>
@@ -770,55 +776,38 @@
                 <h2>데이터·IT 융합 행정 및 비즈니스 인텔리전스</h2>
                 <p>데이터 분석과 정보시스템 기획 역량을 통해 혁신 기업을 위한 과학적이고 정교한 비즈니스 행정 컨설팅을 제공합니다.</p>
             </div>
-            <div class="services-grid">
+            <div class="features-grid">
                 <!-- Data Card 1 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
-                    <h3>빅데이터 기반<br class="pc-br">사업 타당성 분석</h3>
-                    <p>데이터 기반 객관적 지표를 통해 사업의 타당성을 입증하고 투자자와 행정청을 논리적으로 설득합니다.</p>
-                    <ul class="service-points">
-                        <li><i class="fas fa-angle-right"></i> <div><strong>시장/산업 트렌드 분석</strong><span>거시경제 지표 및 경쟁사 데이터 수집을 통한 비즈니스 환경 객관화</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>비용 편익 및 ROI 모델링</strong><span>신규 사업 및 IT 시스템 도입에 따른 재무적 타당성(B/C Ratio) 도출</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>데이터 기반 입지 및 상권 분석</strong><span>공공데이터를 활용한 최적의 사업장 입지 선정 및 행정 규제 사전 진단</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>정량적 투자유치(IR) 자료 구축</strong><span>정부지원사업 및 B2B 제안서의 핵심인 객관적 시장 입증 데이터 기획</span></div></li>
-                    </ul>
-                    <div class="service-proof">
-                        <strong><i class="fas fa-check-circle"></i> 검증된 전문 역량</strong>
-                        국가공인 데이터 분석 자격 바탕의 정량적·과학적 지표 도출
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="feature-text">
+                        <h4>빅데이터 기반 사업 타당성 분석</h4>
+                        <p>데이터 기반 객관적 지표를 통해 사업의 타당성을 입증하고 투자자와 행정청을 논리적으로 설득합니다.</p>
                     </div>
                 </div>
 
                 <!-- Data Card 2 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>IT·플랫폼 비즈니스<br class="pc-br">행정 규제 해소</h3>
-                    <p>IT 시스템과 플랫폼 비즈니스 생태계 이해를 바탕으로, 혁신적 비즈니스 모델이 직면할 수 있는 행정적 규제를 선제적으로 해소합니다.</p>
-                    <ul class="service-points">
-                        <li><i class="fas fa-angle-right"></i> <div><strong>플랫폼/앱 비즈니스 모델(BM) 진단</strong><span>신규 서비스 출시 전 관련 법령 규제 저촉 여부 검토</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>IT 특화 인허가 및 등록 자문</strong><span>통신판매업, 위치정보사업, 통신과금서비스 등 융복합 플랫폼 필수 인허가</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>약관 및 행정 정책 수립</strong><span>이용약관, 개인정보처리방침 등 IT 서비스 운영의 기초 법무 규정 세팅</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>소프트웨어 용역 리스크 헷징</strong><span>IT 외주 개발 계약 및 시스템 납품 과정에서 발생하는 행정 분쟁 예방</span></div></li>
-                    </ul>
-                    <div class="service-proof">
-                        <strong><i class="fas fa-check-circle"></i> 검증된 전문 역량</strong>
-                        실전 IT 기획·개발 역량(수상 경력)을 접목한 플랫폼 아키텍처 및 규제 분석
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="feature-text">
+                        <h4>IT·플랫폼 비즈니스 행정 규제 해소</h4>
+                        <p>IT 시스템과 플랫폼 비즈니스 생태계 이해를 바탕으로, 혁신적 비즈니스 모델이 직면할 수 있는 행정적 규제를 선제적으로 해소합니다.</p>
                     </div>
                 </div>
 
                 <!-- Data Card 3 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
-                    <h3>공공 정보시스템 평가 및<br class="pc-br">디지털 전환(DX) 컨설팅</h3>
-                    <p>대규모 공공 정보화 사업 연구 경험을 토대로, B2G IT 프로젝트 수주 제안 전략과 디지털 전환 과정의 조직 리스크를 관리합니다.</p>
-                    <ul class="service-points">
-                        <li><i class="fas fa-angle-right"></i> <div><strong>공공 IT 수주 제안서(ISP) 고도화</strong><span>정부 정보화전략계획 및 시스템 구축 사업 입찰 제안서의 핵심 논리 구조화</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>소프트웨어(SW) 성과 지표 설계</strong><span>시스템 도입 후 사용자 만족도 및 업무 성과 향상(KPI) 측정을 위한 평가 지표 기획</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>디지털 전환 리스크 관리</strong><span>신규 IT 시스템 도입 시 발생하는 조직 내 저항 및 갈등 조정 행정 컨설팅</span></div></li>
-                        <li><i class="fas fa-angle-right"></i> <div><strong>스마트워크 및 ERP 행정 자문</strong><span>국방·공공 분야 ERP 및 예산/재정 시스템 구축 프로젝트의 타당성 논리 개발</span></div></li>
-                    </ul>
-                    <div class="service-proof">
-                        <strong><i class="fas fa-check-circle"></i> 검증된 전문 역량</strong>
-                        공공 정보시스템 성과 분석(KCI 논문) 경험을 통한 DX 컨설팅 고도화
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="feature-text">
+                        <h4>공공 정보시스템 평가 및 디지털 전환(DX) 컨설팅</h4>
+                        <p>대규모 공공 정보화 사업 연구 경험을 토대로, B2G IT 프로젝트 수주 제안 전략과 디지털 전환 과정의 조직 리스크를 관리합니다.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-text" style="width: 100%;">
+                        <h4 style="display: flex; align-items: center; gap: 10px;"><i class="fas fa-shield-alt" style="color: var(--gold-600); font-size: 1.5rem;"></i> 기업 운영 시 발생하는 행정 리스크 관리</h4>
+                        <p>창업자 실패 요인(ERIS) 연구 및 갈등·협상상담 전문가 과정을 수료한 역량을 활용하여, 창업 초기 발생할 수 있는 노무/행정적 리스크와 관청과의 이견을 전략적으로 조정하고 신속하게 해결합니다.</p>
                     </div>
                 </div>
             </div>
@@ -909,7 +898,6 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <!-- 푸터 영역: 이미지 로드 실패 시 텍스트로 전환 (onerror) -->
                     <div class="footer-logo notranslate" id="footer-logo-link">
                         <img src="hyeonwon_symbol_v17.png" alt="현원 로고 심볼" class="footer-logo-symbol" onerror="handleFooterLogoError()">
                         <img src="hyeonwon_wordmark.png" alt="현원 행정사 사무소 로고 텍스트" class="footer-logo-text" onerror="handleFooterLogoError()">
