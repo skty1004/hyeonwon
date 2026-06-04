@@ -1,8 +1,4 @@
-모든 검색 로봇의 접근을 허용합니다.
-
 User-agent: *
 Allow: /
-
-(선택) 사이트맵이 있는 경우 아래 주석(#)을 지우고 실제 도메인 주소로 변경하여 사용하세요.
 
 Sitemap: https://www.hyunwon.com/sitemap.xml
